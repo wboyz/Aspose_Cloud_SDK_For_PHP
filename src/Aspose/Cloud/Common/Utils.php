@@ -129,7 +129,7 @@ class Utils
 
         // Allow users to register curl options before the call is executed
         $event = new ProcessCommandEvent($session);
-        $dispatcher->dispatch(ProcessCommandEvent::PRE_CURL, $event);
+        $dispatcher->dispatch($event, ProcessCommandEvent::PRE_CURL);
 
         $result = curl_exec($session);
         $headers = curl_getinfo($session);
@@ -155,7 +155,7 @@ class Utils
         $event = new ProcessCommandEvent($session, $result);
 
         /** @var ProcessCommandEvent $dispatchedEvent */
-        $dispatchedEvent = $dispatcher->dispatch(ProcessCommandEvent::POST_CURL, $event);
+        $dispatchedEvent = $dispatcher->dispatch($event, ProcessCommandEvent::POST_CURL);
 
         curl_close($session);
 
@@ -307,7 +307,7 @@ class Utils
         $event = new ValidateOutputEvent($result, $invalid);
 
         /** @var ValidateOutputEvent $dispatchedEvent */
-        $dispatchedEvent = $dispatcher->dispatch(ValidateOutputEvent::VALIDATE_OUTPUT, $event);
+        $dispatchedEvent = $dispatcher->dispatch($event, ValidateOutputEvent::VALIDATE_OUTPUT);
 
         // If the output is invalid it contains the error message
         if ($dispatchedEvent->isInvalid() === true) {

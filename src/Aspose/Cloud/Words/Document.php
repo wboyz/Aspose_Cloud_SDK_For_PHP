@@ -232,7 +232,7 @@ class Document {
                 Utils::saveFile($responseStream, $outputFile);
 
                 $event = new SplitPageEvent($outputFile, $pageNumber +1);
-                $dispatcher->dispatch(SplitPageEvent::PAGE_IS_SPLIT, $event);
+                $dispatcher->dispatch($event, SplitPageEvent::PAGE_IS_SPLIT);
             }
             return $json->SplitResult->Pages;
         }

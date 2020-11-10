@@ -813,7 +813,7 @@ class Document
             echo $outputFile . '<br />'; // FIXME what is the function of this, why let the API echo?
 
             $event = new SplitPageEvent($outputFile, $pageNumber);
-            $dispatcher->dispatch(SplitPageEvent::PAGE_IS_SPLIT, $event);
+            $dispatcher->dispatch($event, SplitPageEvent::PAGE_IS_SPLIT);
 
             $pageNumber++;
         }
@@ -852,7 +852,7 @@ class Document
             echo $outputFile . '<br />';
 
             $event = new SplitPageEvent($outputFile, $pageNumber);
-            $dispatcher->dispatch(SplitPageEvent::PAGE_IS_SPLIT, $event);
+            $dispatcher->dispatch($event, SplitPageEvent::PAGE_IS_SPLIT);
 
             $pageNumber++;
         }
@@ -891,7 +891,7 @@ class Document
             echo $outputFile . '<br />';
 
             $event = new SplitPageEvent($outputFile, $pageNumber);
-            $dispatcher->dispatch(SplitPageEvent::PAGE_IS_SPLIT, $event);
+            $dispatcher->dispatch($event, SplitPageEvent::PAGE_IS_SPLIT);
 
             $pageNumber++;
         }
